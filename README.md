@@ -24,7 +24,16 @@ uv run alembic upgrade head
 uv run uvicorn --factory ledgerline.api.app:create_app
 ```
 
-Then `scripts/demo_week1.sh` runs a transfer, a retry, a key reuse and an unbalanced entry.
+Then try a transfer, and retry it with the same key:
+
+```sh
+curl -X POST localhost:8000/accounts -H 'Idempotency-Key: a1' -H 'content-type: application/json' \
+  -d '{"external_ref":"world","type":"equity","currency":"USD","allow_negative":true}'
+curl -X POST localhost:8000/accounts -H 'Idempotency-Key: a2' -H 'content-type: application/json' \
+  -d '{"external_ref":"alice","type":"liability","currency":"USD"}'
+curl -i -X POST localhost:8000/transfers -H 'Idempotency-Key: t1' -H 'content-type: application/json' \
+  -d '{"from_account_id":1,"to_account_id":2,"amount":2500,"currency":"USD"}'
+```
 
 ## Tests
 
