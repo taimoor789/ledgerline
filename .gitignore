@@ -1,0 +1,33 @@
+# Private: never pushed
+CLAUDE.md
+CLAUDE.local.md
+.claude/
+.mcp.json
+PLAN.md
+KICKOFF_PROMPT.md
+notes/
+.env
+.env.*
+!.env.example
+
+# Python
+.venv/
+__pycache__/
+*.py[cod]
+.mypy_cache/
+.ruff_cache/
+.pytest_cache/
+.hypothesis/
+.coverage
+coverage.xml
+htmlcov/
+
+# Node
+node_modules/
+
+# Data
+data/raw/
+*.csv.gz
+
+# OS
+.DS_Store
